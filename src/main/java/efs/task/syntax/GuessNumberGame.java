@@ -45,7 +45,7 @@ public int licznik = 1;
         for (int i=0; i<licznik; i++) {
             System.out.print('*');
         }
-        if (proba>0) {
+        if (proba>=1) {
             for (int i=0; i<proba; i++) {
                 System.out.print('.');
             }
@@ -55,7 +55,7 @@ public int licznik = 1;
     public void play() {
         //TODO: Implement the method that executes the game session
         System.out.println("<1,"+M+">");    //wyswietlenie przedzialu
-        int proby = (int) (Math.abs(Math.log(M) / Math.log(2))) ;    //wzor na ilosc prob
+        int proby = (int) (Math.abs(Math.log(M) / Math.log(2))) + 1;    //wzor na ilosc prob
         Random random = new Random();
         Scanner scanner = new Scanner(System.in);   // scannner
         int poprawna_liczba = random.nextInt(M)+1;
