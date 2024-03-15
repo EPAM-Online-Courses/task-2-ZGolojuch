@@ -3,7 +3,7 @@ import java.util.Scanner;
 import java.util.Random;
 
 
-
+// jakas zmiana
 
 public class GuessNumberGame {
 public int M;
