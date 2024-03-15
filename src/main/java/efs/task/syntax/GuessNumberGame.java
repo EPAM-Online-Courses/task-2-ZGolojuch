@@ -2,9 +2,6 @@ package efs.task.syntax;
 import java.util.Scanner;
 import java.util.Random;
 
-
-// jakas zmiana halo
-
 public class GuessNumberGame {
     public int M;
     public int liczba;
@@ -15,7 +12,6 @@ public class GuessNumberGame {
 
     //Do not modify main method
     public static void main(String[] args) {
-
         try {
             GuessNumberGame game = new GuessNumberGame(args.length > 0 ? args[0] : "");
             game.play();
@@ -40,6 +36,7 @@ public class GuessNumberGame {
             throw new IllegalArgumentException();
         }
     }
+
     public void pasek(int proba, int licznik) {
         System.out.print('[');
         for (int i=0; i<licznik; i++) {
@@ -50,24 +47,28 @@ public class GuessNumberGame {
         }
         System.out.println(']');
     }
+
     public void play() {
         //TODO: Implement the method that executes the game session
-        System.out.println("<1,"+M+">");    //wyswietlenie przedzialu
-        int proba = (int) (Math.abs(Math.log(M) / Math.log(2))) + 1;    //wzor na ilosc prob
         Random random = new Random();
-        //System.out.println("liczba prob L = "+L);
         Scanner scanner = new Scanner(System.in);   // scannner
+
+        int proba = (int) (Math.abs(Math.log(M) / Math.log(2))) + 1;    //wzor na ilosc prob
         int poprawna_liczba = random.nextInt(M)+1;
+
+        System.out.println("<1,"+M+">");    //wyswietlenie przedzialu
+
         while (proba>0) {
             pasek(proba, licznik);  //wyswietlenie paska
+
             proba--;
             licznik++;
+
             System.out.println(UsefulConstants.GIVE_ME);
             input = scanner.nextLine();
+
             try {
                 liczba = Integer.parseInt(input);
-                //Nie mozna po prostu zrobic
-                // liczba = scanner.nextInt(); ???
 
             } catch (NumberFormatException e){
                 System.out.println(UsefulConstants.NOT_A_NUMBER);
@@ -85,7 +86,6 @@ public class GuessNumberGame {
                 proba=-1;
                 zgadles = true;
             }
-
         }
 
         if (zgadles){
