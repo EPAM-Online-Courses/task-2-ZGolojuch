@@ -6,11 +6,12 @@ import java.util.Random;
 // jakas zmiana halo
 
 public class GuessNumberGame {
-public int M;
-public int liczba;
-public boolean zgadles = false;
-public String input;
-public int licznik = 1;
+    public int M;
+    public int liczba;
+    public boolean zgadles = false;
+    public String input;
+    public int licznik = 1;
+
 
     //Do not modify main method
     public static void main(String[] args) {
@@ -29,7 +30,7 @@ public int licznik = 1;
 
         try {
             M = Integer.parseInt(argument);
-            if ( M<2 || M>UsefulConstants.MAX_UPPER_BOUND){
+            if ( M<1 || M>UsefulConstants.MAX_UPPER_BOUND){
                 System.out.println(UsefulConstants.WRONG_ARGUMENT); // lub za duza za mala, nie wiem
                 throw new IllegalArgumentException();
             }
@@ -38,30 +39,28 @@ public int licznik = 1;
             System.out.println(UsefulConstants.WRONG_ARGUMENT); // lub NOT_A_NUMBER
             throw new IllegalArgumentException();
         }
-
     }
     public void pasek(int proba, int licznik) {
         System.out.print('[');
         for (int i=0; i<licznik; i++) {
             System.out.print('*');
         }
-        if (proba>=1) {
-            for (int i=0; i<proba; i++) {
-                System.out.print('.');
-            }
+        for (int i=0; i<proba-1; i++) {
+            System.out.print('.');
         }
         System.out.println(']');
     }
     public void play() {
         //TODO: Implement the method that executes the game session
         System.out.println("<1,"+M+">");    //wyswietlenie przedzialu
-        int proby = (int) (Math.abs(Math.log(M) / Math.log(2))) + 1;    //wzor na ilosc prob
+        int proba = (int) (Math.abs(Math.log(M) / Math.log(2))) + 1;    //wzor na ilosc prob
         Random random = new Random();
+        //System.out.println("liczba prob L = "+L);
         Scanner scanner = new Scanner(System.in);   // scannner
         int poprawna_liczba = random.nextInt(M)+1;
-        while (proby>=0) {
-            pasek(proby, licznik);  //wyswietlenie paska
-            proby--;
+        while (proba>0) {
+            pasek(proba, licznik);  //wyswietlenie paska
+            proba--;
             licznik++;
             System.out.println(UsefulConstants.GIVE_ME);
             input = scanner.nextLine();
@@ -83,7 +82,7 @@ public int licznik = 1;
             }
             if (liczba==poprawna_liczba){
                 System.out.println(UsefulConstants.YES);
-                proby=-1;
+                proba=-1;
                 zgadles = true;
             }
 
@@ -95,6 +94,5 @@ public int licznik = 1;
         else {
             System.out.println(UsefulConstants.UNFORTUNATELY);
         }
-
     }
 }
